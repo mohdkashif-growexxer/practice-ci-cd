@@ -18,7 +18,13 @@ steps:
       echo "Running Python App..."
       python3 app.py
 
+  - type: Command
+    name: Create Artifact File
+    command: |
+      echo "Build successful. Creating artifact file..."
+      echo "Build completed at $(date)" > build_output.txt
+
 outputArtifacts:
   - name: app-artifact
     type: BINARY
-    location: .
+    location: build_output.txt
