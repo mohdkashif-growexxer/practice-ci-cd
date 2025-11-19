@@ -22,9 +22,9 @@ steps:
     name: Create Artifact File
     command: |
       echo "Build successful. Creating artifact file..."
-      echo "Build completed at $(date)" > build_output.txt
+      echo "Build completed at $(date)" > ${OCI_PRIMARY_SOURCE_DIR}/build_output.txt
 
 outputArtifacts:
   - name: app-artifact
     type: BINARY
-    location: build_output.txt
+    location: ${OCI_PRIMARY_SOURCE_DIR}/build_output.txt
