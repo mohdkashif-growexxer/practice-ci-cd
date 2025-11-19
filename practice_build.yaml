@@ -39,9 +39,10 @@ steps:
   - type: Command
     name: Check Result
     command: |
-      RESULT=0  # simulate success
+      RESULT=0  # means success
       if [ $RESULT -ne 0 ]; then
         echo "Error: Something failed"
         exit 1
       else
-        echo "
+        echo "Pipeline finished successfully!"
+        fi
