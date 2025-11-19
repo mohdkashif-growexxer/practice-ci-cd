@@ -1,0 +1,47 @@
+version: 0.1
+component: build
+timeoutInSeconds: 600
+runAs: root
+shell: bash
+
+steps:
+  # Step 1: Setup environment (dummy)
+  - type: Command
+    name: Setup Environment
+    command: |
+      echo "Starting environment setup..."
+      echo "Installing Java..."
+      sleep 2
+      echo "Java installed!"
+      echo "Environment setup done."
+
+  # Step 2: Fetch secrets (dummy)
+  - type: Command
+    name: Fetch Secrets
+    command: |
+      echo "Fetching DB credentials..."
+      export DB_USER=dummy_user
+      export DB_PASS=dummy_pass
+      export DB_CONN=dummy_db
+      echo "Secrets fetched: $DB_USER / $DB_CONN"
+
+  # Step 3: Run sample script
+  - type: Command
+    name: Run Sample Script
+    command: |
+      echo "Running sample script..."
+      mkdir -p scripts
+      echo "SELECT * FROM DUMMY_TABLE;" > scripts/sample.sql
+      cat scripts/sample.sql
+      echo "Script execution simulated."
+
+  # Step 4: Logging & error handling
+  - type: Command
+    name: Check Result
+    command: |
+      RESULT=0  # simulate success
+      if [ $RESULT -ne 0 ]; then
+        echo "Error: Something failed"
+        exit 1
+      else
+        echo "
