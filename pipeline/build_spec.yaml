@@ -1,0 +1,30 @@
+version: 0.1
+component: build
+timeoutInSeconds: 1200
+runAs: root
+shell: bash
+
+steps:
+  - type: Command
+    name: Install Python
+    command: |
+      echo "Installing Python3..."
+      yum install -y python3
+      python3 --version
+
+  - type: Command
+    name: Run Python App
+    command: |
+      echo "Running Python App..."
+      python3 app.py
+
+  - type: Command
+    name: Create Artifact File
+    command: |
+      echo "Build successful. Creating artifact file..."
+      echo "Build completed at $(date)" > ${OCI_PRIMARY_SOURCE_DIR}/build_output.txt
+
+outputArtifacts:
+  - name: app-artifact
+    type: BINARY
+    location: ${OCI_PRIMARY_SOURCE_DIR}/build_output.txt
